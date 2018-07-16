@@ -1,0 +1,38 @@
+{
+  "name": "gendiff-fwlpe",
+  "version": "0.0.1",
+  "description": "hexlet lvl2 project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "babel-node": "babel-node",
+    "build": "NODE_ENV=production babel src --out-dir dist --source-maps inline",
+    "eslint": "eslint",
+    "prepublishOnly": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fwlpe/project-lvl2-s297.git"
+  },
+  "author": "fwlpe",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fwlpe/project-lvl2-s297/issues"
+  },
+  "homepage": "https://github.com/fwlpe/project-lvl2-s297#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.2.3",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.11.0"
+  },
+  "dependencies": {
+    "errno": "^0.1.7",
+    "eslint-plugin-babel": "^5.0.0",
+    "readline-sync": "^1.4.9"
+  }
+}
