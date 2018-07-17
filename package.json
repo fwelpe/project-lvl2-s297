@@ -1,10 +1,10 @@
 {
   "name": "gendiff-fwlpe",
-  "version": "0.0.4",
+  "version": "0.2.1",
   "description": "hexlet lvl2 project",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "babel-node": "babel-node",
     "build": "NODE_ENV=production babel src --out-dir dist --source-maps inline",
     "eslint": "eslint",
@@ -38,6 +38,7 @@
   },
   "dependencies": {
     "commander": "^2.16.0",
-    "eslint-plugin-babel": "^5.0.0"
+    "eslint-plugin-babel": "^5.0.0",
+    "lodash": "^4.17.10"
   }
 }
