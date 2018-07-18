@@ -1,4 +1,4 @@
-install:
+giinstall:
 	npm install
 
 publish:
@@ -11,4 +11,4 @@ test:
 	npm test
 
 gendiff:
-	npm run babel-node -- src/bin/gendiff.js __tests__/__fixtures__/before.json __tests__/__fixtures__/after.json
+	npm run babel-node -- src/bin/gendiff.js /home/fwlpe/project-lvl2-s297/__tests__/__fixtures__/before.json /home/fwlpe/project-lvl2-s297/__tests__/__fixtures__/after.json

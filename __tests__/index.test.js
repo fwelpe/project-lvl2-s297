@@ -1,9 +1,12 @@
-import gendiff from '../dist/';
+/* eslint no-undef: "off" */
 import path from 'path';
-import fs from 'fs'
+import fs from 'fs';
+import gendiff from '../src/';
 
 const getFixturePath = fileName => path.join(__dirname, '__fixtures__', fileName);
 
 test('testing difference on fixtures', () => {
-  expect(gendiff(getFixturePath('before.json'), getFixturePath('after.json'))).toBe(fs.readFileSync(getFixturePath('result'), 'utf-8'));
+  const result = gendiff(getFixturePath('before.json'), getFixturePath('after.json'));
+  const expected = fs.readFileSync(getFixturePath('result'), 'utf-8');
+  expect(result).toBe(expected);
 });
