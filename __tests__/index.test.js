@@ -1,4 +1,4 @@
-/* eslint no-undef: "off" */
+// @flow
 import path from 'path';
 import fs from 'fs';
 import gendiff from '../src/';
