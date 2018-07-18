@@ -9,18 +9,13 @@ export default (path1, path2) => {
   const arrOfUniqKeys = _.union(Object.keys(path1obj), Object.keys(path2obj));
   const f = (acc, val) => {
     if (path1obj[val] === path2obj[val]) {
-      acc.push(`    ${val}: ${path1obj[val]}`);
-      return acc;
+      return [...acc, `    ${val}: ${path1obj[val]}`];
     }
-    if (_.has(path1obj, val)) {
-      acc.push(`  - ${val}: ${path1obj[val]}`);
-    }
-    if (_.has(path2obj, val)) {
-      acc.push(`  + ${val}: ${path2obj[val]}`);
-    }
-    return acc;
+    const obj1diff = _.has(path1obj, val) ? `  - ${val}: ${path1obj[val]}` : '';
+    const obj2diff = _.has(path2obj, val) ? `  + ${val}: ${path2obj[val]}` : '';
+    return [...acc, obj1diff, obj2diff];
   };
-  const result = arrOfUniqKeys.reduce(f, ['{']);
-  result.push('}\n');
-  return result.join('\n');
+  const preresult = arrOfUniqKeys.reduce(f, ['{']);
+  const resultWithoutFalseParts = _.compact(preresult);
+  return [...resultWithoutFalseParts, '}\n'].join('\n');
 };
