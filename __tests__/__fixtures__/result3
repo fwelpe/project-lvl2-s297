@@ -1,0 +1,12 @@
+{
+    o: p
+    a with spaces: b  c
+    [disturbing]: hey you never know
+  - s: something
+  - s1: "something'
+    s2: something else
+    br: warm
+  - eq: eq=eq
+  + new: newnew
+  + foo: bar
+}
