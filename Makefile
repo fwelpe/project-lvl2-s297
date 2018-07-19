@@ -16,6 +16,8 @@ gdfjson:
 gdfyml:
 	npm run babel-node -- src/bin/gendiff.js /home/fwlpe/project-lvl2-s297/__tests__/__fixtures__/before.yml /home/fwlpe/project-lvl2-s297/__tests__/__fixtures__/after.yml
 
+gdfini:
+	npm run babel-node -- src/bin/gendiff.js /home/fwlpe/project-lvl2-s297/__tests__/__fixtures__/before.ini /home/fwlpe/project-lvl2-s297/__tests__/__fixtures__/after.ini
 
 tmp:
 	npm run babel-node -- tmp.js

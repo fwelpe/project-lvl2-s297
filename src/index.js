@@ -1,11 +1,13 @@
 import path from 'path';
 import fs from 'fs';
 import yamlParser from 'js-yaml';
+import iniParser from 'ini';
 import gendiff from './pureGendiff';
 
 const parserFnSwitcher = {
   '.json': filepath => JSON.parse(fs.readFileSync(filepath)),
   '.yml': filepath => yamlParser.safeLoad(fs.readFileSync(filepath)),
+  '.ini': filepath => iniParser.parse(fs.readFileSync(filepath, 'utf-8')),
 };
 
 export default (path1, path2) => {
