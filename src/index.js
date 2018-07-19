@@ -1,21 +1,22 @@
+import path from 'path';
 import fs from 'fs';
-import _ from 'lodash';
+import yamlParser from 'js-yaml';
+import gendiff from './pureGendiff';
+
+const parserFnSwitcher = {
+  '.json': filepath => JSON.parse(fs.readFileSync(filepath)),
+  '.yml': filepath => yamlParser.safeLoad(fs.readFileSync(filepath)),
+};
 
 export default (path1, path2) => {
-  const path1FileRead = fs.readFileSync(path1);
-  const path1obj = JSON.parse(path1FileRead);
-  const path2FileRead = fs.readFileSync(path2);
-  const path2obj = JSON.parse(path2FileRead);
-  const arrOfUniqKeys = _.union(Object.keys(path1obj), Object.keys(path2obj));
-  const f = (acc, val) => {
-    if (path1obj[val] === path2obj[val]) {
-      return [...acc, `    ${val}: ${path1obj[val]}`];
-    }
-    const obj1diff = _.has(path1obj, val) ? `  - ${val}: ${path1obj[val]}` : '';
-    const obj2diff = _.has(path2obj, val) ? `  + ${val}: ${path2obj[val]}` : '';
-    return [...acc, obj1diff, obj2diff];
-  };
-  const preresult = arrOfUniqKeys.reduce(f, ['{']);
-  const resultWithoutFalseParts = _.compact(preresult);
-  return [...resultWithoutFalseParts, '}\n'].join('\n');
+  const extension1 = path.extname(path1);
+  const extension2 = path.extname(path2);
+  if (extension1 !== extension2) {
+    console.log('different input file formats. not supported');
+    return null;
+  }
+  const parserFn = parserFnSwitcher[extension1];
+  const parsed1 = parserFn(path1);
+  const parsed2 = parserFn(path2);
+  return gendiff(parsed1, parsed2);
 };
