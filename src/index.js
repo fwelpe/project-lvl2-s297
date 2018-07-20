@@ -1,7 +1,7 @@
 import path from 'path';
 import fs from 'fs';
 import gendiff from './pureGendiff';
-import parserFnSwitcher from './parserFnSwitcher';
+import parser from './parser';
 
 export default (path1, path2) => {
   const file1raw = fs.readFileSync(path1, 'utf-8');
@@ -12,8 +12,7 @@ export default (path1, path2) => {
     console.log('different input file formats. not supported');
     return null;
   }
-  const parserFn = parserFnSwitcher[extension1];
-  const parsed1 = parserFn(file1raw);
-  const parsed2 = parserFn(file2raw);
+  const parsed1 = parser(file1raw, extension1);
+  const parsed2 = parser(file2raw, extension2);
   return gendiff(parsed1, parsed2);
 };
