@@ -1,9 +1,9 @@
 import path from 'path';
 import fs from 'fs';
-import gendiff from './pureGendiff';
+import render from './render';
 import parser from './parser';
 
-export default (path1, path2) => {
+export default (path1, path2, format) => {
   const file1raw = fs.readFileSync(path1, 'utf-8');
   const file2raw = fs.readFileSync(path2, 'utf-8');
   const extension1 = path.extname(path1);
@@ -14,5 +14,5 @@ export default (path1, path2) => {
   }
   const parsed1 = parser(file1raw, extension1);
   const parsed2 = parser(file2raw, extension2);
-  return gendiff(parsed1, parsed2);
+  return render(parsed1, parsed2, format);
 };
