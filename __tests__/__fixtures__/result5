@@ -1,0 +1,37 @@
+{
+    o: p
+    a with spaces: b  c
+  - [disturbing]: hey you never know
+  + [disturbing]: hey yosdffsu never know
+  - s: something
+    s1: "something'
+    s2: some	hing else
+    br: warm
+    eq: eq=eq
+    a: {
+        av: a val
+      - e: { o: p, a: { av: a val, b: { c: { e: "this [value]" } } } }
+      + e: { o: p, a: { av: a val } }
+      - j: "{ o: "p", a: { av: "a val", b: { c: { e: "this [value]" } } } }"
+      + j: "{ o: "p", a: { av: "a vasdal", b: { c: { e: "thisz [value]" } } } }"
+      - []: a square?
+      + []: a squaqweqwere?
+        b: {
+            c: {
+                e: 1
+                j: 2
+            }
+        }
+      + fasdfsd: fasdfsdfsf
+    }
+    x.y.z: {
+        x.y.z: xyz
+        a.b.c: {
+            a.b.c: abc
+            nocomment: this; this is not a comment
+            noHashComment: this# this is not a comment
+          + fsdfasdfs: fsdafsdfsdf
+        }
+    }
+  + fasfsdaf: fsdafsdfsdf
+}

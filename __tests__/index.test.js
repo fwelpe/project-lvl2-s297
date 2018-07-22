@@ -21,3 +21,15 @@ test('testing difference ini', () => {
   const expected3 = fs.readFileSync(getFixturePath('result3'), 'utf-8');
   expect(result3).toBe(expected3);
 });
+
+test('testing difference json extended', () => {
+  const result4 = gendiff(getFixturePath('before2.json'), getFixturePath('after2.json'));
+  const expected4 = fs.readFileSync(getFixturePath('result4'), 'utf-8');
+  expect(result4).toBe(expected4);
+});
+
+test('testing difference ini extended', () => {
+  const result5 = gendiff(getFixturePath('before2.ini'), getFixturePath('after2.ini'));
+  const expected5 = fs.readFileSync(getFixturePath('result5'), 'utf-8');
+  expect(result5).toBe(expected5);
+});
