@@ -7,7 +7,7 @@ commander
   .version(packageJson.version, '-v, --version')
   .arguments('<firstConfig> <secondConfig>')
   .description('Compares two configuration files and shows a difference.')
-  .option('-f, --format [type]', 'Output format')
+  .option('-f, --format [type]', 'Output format', 'objLike')
   .action((firstConfig, secondConfig) =>
     console.log(gendiff(firstConfig, secondConfig, commander.format)))
   .parse(process.argv);

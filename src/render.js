@@ -53,19 +53,19 @@ const renderPlain = (AST, parentArr = []) => {
   const renderIter = (acc, key) => {
     const ASTnode = AST[key];
     const { difference } = ASTnode;
-    const beginning = 'Property ';
+    const fullKey = [...parentArr, key].join('.');
+    const beginning = `Property ${fullKey}`;
     const nodeValue1 = renderValue(ASTnode.value1, 'plain');
     const nodeValue2 = renderValue(ASTnode.value2, 'plain');
-    const fullKey = [...parentArr, key].join('.');
     switch (difference) {
       case 'same':
-        return [...acc, `${beginning}${fullKey} was the same.`];
+        return [...acc, `${beginning} was the same.`];
       case 'added':
-        return [...acc, `${beginning}${fullKey} was added with ${nodeValue2}`];
+        return [...acc, `${beginning} was added with ${nodeValue2}`];
       case 'removed':
-        return [...acc, `${beginning}${fullKey} was removed.`];
+        return [...acc, `${beginning} was removed.`];
       case 'different':
-        return [...acc, `${beginning}${fullKey} was updated. From ${nodeValue1} to ${nodeValue2}`];
+        return [...acc, `${beginning} was updated. From ${nodeValue1} to ${nodeValue2}`];
       case 'objects':
         return [...acc, renderPlain(ASTnode.childrenAST, [...parentArr, key])];
       default:
@@ -78,10 +78,15 @@ const renderPlain = (AST, parentArr = []) => {
 };
 
 const render = (AST, format) => {
-  if (format === 'plain') {
-    return renderPlain(AST);
+  switch (format) {
+    case 'objLike':
+      return renderObjLike(AST);
+    case 'plain':
+      return renderPlain(AST);
+    default:
+      console.log('wrong format!');
+      return null;
   }
-  return renderObjLike(AST);
 };
 
 export default (obj1, obj2, format) => `${render(ASTconstruct(obj1, obj2), format)}\n`;

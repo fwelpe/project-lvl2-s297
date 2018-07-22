@@ -1,0 +1,23 @@
+{
+    fgdasfgsdfg: {
+        fgdsf: fsdafsd
+        fsdafd: foo
+        fgfdfg: {
+            fgsdfd: fgdsf
+          - fsdfdf: nope
+          + fsdfdf: yes
+        }
+    }
+    fsdafsdf: {
+      - fsdfsddf: {
+            fasdfsdafs: fsdafs
+        }
+        fsdafsdf: fasdfsda
+      + foobar: barfoo
+    }
+  - asdfasdf: fasdfsdf
+    fgasfs: {
+      - fasdfasf: fasfsf
+      + fasfsd: fasdfsdf
+    }
+}

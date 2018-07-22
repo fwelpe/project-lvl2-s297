@@ -33,3 +33,9 @@ test('testing difference ini extended', () => {
   const expected5 = fs.readFileSync(getFixturePath('result5'), 'utf-8');
   expect(result5).toBe(expected5);
 });
+
+test('testing difference yml extended', () => {
+  const result6 = gendiff(getFixturePath('before2.yml'), getFixturePath('after2.yml'));
+  const expected6 = fs.readFileSync(getFixturePath('result6'), 'utf-8');
+  expect(result6).toBe(expected6);
+});

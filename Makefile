@@ -22,6 +22,13 @@ gdfjspl:
 gdfyml:
 	npm run babel-node -- src/bin/gendiff.js /home/fwlpe/project-lvl2-s297/__tests__/__fixtures__/before.yml /home/fwlpe/project-lvl2-s297/__tests__/__fixtures__/after.yml
 
+gdfyml2:
+	npm run babel-node -- src/bin/gendiff.js /home/fwlpe/project-lvl2-s297/__tests__/__fixtures__/before2.yml /home/fwlpe/project-lvl2-s297/__tests__/__fixtures__/after2.yml
+
+gdfyml2plain:
+	npm run babel-node -- src/bin/gendiff.js --format plain /home/fwlpe/project-lvl2-s297/__tests__/__fixtures__/before2.yml /home/fwlpe/project-lvl2-s297/__tests__/__fixtures__/after2.yml
+
+
 gdfini:
 	npm run babel-node -- src/bin/gendiff.js /home/fwlpe/project-lvl2-s297/__tests__/__fixtures__/before.ini /home/fwlpe/project-lvl2-s297/__tests__/__fixtures__/after.ini
 

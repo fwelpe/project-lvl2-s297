@@ -3,7 +3,7 @@ import fs from 'fs';
 import render from './render';
 import parser from './parser';
 
-export default (path1, path2, format) => {
+export default (path1, path2, format = 'objLike') => {
   const file1raw = fs.readFileSync(path1, 'utf-8');
   const file2raw = fs.readFileSync(path2, 'utf-8');
   const extension1 = path.extname(path1);
