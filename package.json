@@ -1,6 +1,6 @@
 {
   "name": "gendiff-fwlpe",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "hexlet lvl2 project",
   "main": "dist/index.js",
   "scripts": {
