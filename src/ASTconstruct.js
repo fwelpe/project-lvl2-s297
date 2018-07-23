@@ -12,9 +12,7 @@ const ASTconstruct = (obj1, obj2) => {
     if (!_.has(obj2, key)) {
       return { ...acc, [key]: { difference: 'removed', ...values } };
     }
-    const type1 = typeof iterVal1;
-    const type2 = typeof iterVal2;
-    if ((type1 === 'object') && (type2 === 'object')) {
+    if (_.isObject(iterVal1) && _.isObject(iterVal2)) {
       const childrenAST = ASTconstruct(iterVal1, iterVal2);
       return { ...acc, [key]: { difference: 'objects', ...values, childrenAST } };
     }
