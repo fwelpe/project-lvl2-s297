@@ -1,16 +1,16 @@
-const renderJSON = (ast) => {
+/* const renderJSON = (ast) => {
   const ASTkeys = Object.keys(ast);
   const renderIter = (acc, key) => {
     const ASTnode = ast[key];
     const { difference } = ASTnode;
     const nodeValue1 = ASTnode.value1;
     const nodeValue2 = ASTnode.value2;
-    const keyInObj1Removed = { removed: nodeValue1 };
-    const keyInObj2Added = { added: nodeValue2 };
-    const equalValuesCase = { same: nodeValue1 };
+    const keyInObj1Removed = { [`'${key}' removed`]: nodeValue1 };
+    const keyInObj2Added = { [`'${key}' added`]: nodeValue2 };
+    const equalValuesCase = { [`'${key}' same`]: nodeValue1 };
     switch (difference) {
       case 'same':
-        return { ...acc, equalValuesCase };
+        return { ...acc, ...equalValuesCase };
       case 'different':
         return { ...acc, ...keyInObj1Removed, ...keyInObj2Added };
       case 'added':
@@ -24,7 +24,7 @@ const renderJSON = (ast) => {
     }
   };
   const rendered = ASTkeys.reduce(renderIter, {});
-  return JSON.stringify(rendered, null, ' ');
-};
+  return JSON.stringify(rendered);
+}; */
 
-export default renderJSON;
+export default JSON.stringify;

@@ -20,7 +20,10 @@ gdfjson2:
 	npm run babel-node -- src/bin/gendiff.js /home/fwlpe/project-lvl2-s297/__tests__/__fixtures__/before2.json /home/fwlpe/project-lvl2-s297/__tests__/__fixtures__/after2.json
 
 gdfjsonjson:
-	npm run babel-node -- src/bin/gendiff.js --format json /home/fwlpe/project-lvl2-s297/__tests__/__fixtures__/before2.json /home/fwlpe/project-lvl2-s297/__tests__/__fixtures__/after2.json > 1.json
+	npm run babel-node -- src/bin/gendiff.js --format json /home/fwlpe/project-lvl2-s297/__tests__/__fixtures__/before.json /home/fwlpe/project-lvl2-s297/__tests__/__fixtures__/after.json
+
+gdfjsonjson2:
+	npm run babel-node -- src/bin/gendiff.js --format json /home/fwlpe/project-lvl2-s297/__tests__/__fixtures__/before2.json /home/fwlpe/project-lvl2-s297/__tests__/__fixtures__/after2.json
 
 gdfjspl:
 	npm run babel-node -- src/bin/gendiff.js --format plain /home/fwlpe/project-lvl2-s297/__tests__/__fixtures__/before2.json /home/fwlpe/project-lvl2-s297/__tests__/__fixtures__/after2.json

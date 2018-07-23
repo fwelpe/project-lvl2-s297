@@ -21,7 +21,7 @@ const renderPlain = (ast, parentArr = []) => {
       case 'different':
         return `${beginning} was updated. From ${complexCheck(astNode.value1)} to ${complexCheck(astNode.value2)}`;
       case 'objects':
-        return renderPlain(astNode.childrenAST, fullKeyArr);
+        return renderPlain(astNode.children, fullKeyArr);
       default:
         throw new Error(`unknown difference: ${difference}. internal bug`);
     }

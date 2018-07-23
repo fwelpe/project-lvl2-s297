@@ -31,7 +31,7 @@ const renderObjLike = (ast, deeplvl = 0) => {
       case 'removed':
         return `${indentation}  - ${key}: ${nodeValue1}`;
       case 'objects':
-        return `${indentation}    ${key}: ${renderObjLike(astNode.childrenAST, deeplvl + 1)}`;
+        return `${indentation}    ${key}: ${renderObjLike(astNode.children, deeplvl + 1)}`;
       default:
         throw new Error(`unknown difference: ${difference}. internal bug`);
     }

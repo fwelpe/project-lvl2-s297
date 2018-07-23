@@ -3,23 +3,23 @@ import _ from 'lodash';
 const astConstruct = (obj1, obj2) => {
   const arrOfUniqKeys = _.union(Object.keys(obj1), Object.keys(obj2));
   const renderIter = (acc, key) => {
-    const iterVal1 = obj1[key];
-    const iterVal2 = obj2[key];
-    const values = { value1: iterVal1, value2: iterVal2 };
+    // const obj1[key] = obj1[key];
+    // const obj2[key] = obj2[key];
+    // const values = { value1: obj1[key], value2: obj2[key] };
     if (!_.has(obj1, key)) {
-      return { ...acc, [key]: { difference: 'added', ...values } };
+      return { ...acc, [key]: { difference: 'added', value2: obj2[key] } };
     }
     if (!_.has(obj2, key)) {
-      return { ...acc, [key]: { difference: 'removed', ...values } };
+      return { ...acc, [key]: { difference: 'removed', value1: obj1[key] } };
     }
-    if (_.isObject(iterVal1) && _.isObject(iterVal2)) {
-      const childrenAST = astConstruct(iterVal1, iterVal2);
-      return { ...acc, [key]: { difference: 'objects', ...values, childrenAST } };
+    if (_.isObject(obj1[key]) && _.isObject(obj2[key])) {
+      const children = astConstruct(obj1[key], obj2[key]);
+      return { ...acc, [key]: { difference: 'objects', children } };
     }
-    if (iterVal1 === iterVal2) {
-      return { ...acc, [key]: { difference: 'same', ...values } };
+    if (obj1[key] === obj2[key]) {
+      return { ...acc, [key]: { difference: 'same', value1: obj1[key] } };
     }
-    return { ...acc, [key]: { difference: 'different', ...values } };
+    return { ...acc, [key]: { difference: 'different', value1: obj1[key], value2: obj2[key] } };
   };
   return arrOfUniqKeys.reduce(renderIter, {});
 };
