@@ -45,3 +45,9 @@ test('testing difference plain format', () => {
   const expected = fs.readFileSync(getFixturePath('result7'), 'utf-8');
   expect(result).toBe(expected);
 });
+
+test('testing json format', () => {
+  const result = gendiff(getFixturePath('before2.json'), getFixturePath('after2.json'), 'json');
+  const expected = fs.readFileSync(getFixturePath('result8'), 'utf-8');
+  expect(result).toBe(expected);
+});
