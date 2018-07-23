@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-const ASTconstruct = (obj1, obj2) => {
+const astConstruct = (obj1, obj2) => {
   const arrOfUniqKeys = _.union(Object.keys(obj1), Object.keys(obj2));
   const renderIter = (acc, key) => {
     const iterVal1 = obj1[key];
@@ -13,7 +13,7 @@ const ASTconstruct = (obj1, obj2) => {
       return { ...acc, [key]: { difference: 'removed', ...values } };
     }
     if (_.isObject(iterVal1) && _.isObject(iterVal2)) {
-      const childrenAST = ASTconstruct(iterVal1, iterVal2);
+      const childrenAST = astConstruct(iterVal1, iterVal2);
       return { ...acc, [key]: { difference: 'objects', ...values, childrenAST } };
     }
     if (iterVal1 === iterVal2) {
@@ -24,4 +24,4 @@ const ASTconstruct = (obj1, obj2) => {
   return arrOfUniqKeys.reduce(renderIter, {});
 };
 
-export default ASTconstruct;
+export default astConstruct;

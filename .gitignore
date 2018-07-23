@@ -5,3 +5,5 @@ src/index_old.js
 foo.ini
 src/pureGendiff_new.js
 src/pureGendiff_old.js
+src/renderers/renderObjLike_old.js
+src/renderers/renderPlain_old.js

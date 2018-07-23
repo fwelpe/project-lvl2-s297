@@ -1,4 +1,14 @@
-import renderValue from './renderValue';
+import _ from 'lodash';
+
+const renderValue = (value, deeplvl) => {
+  if (!_.isObject(value)) {
+    return `${value}`;
+  }
+  const indentation = '    '.repeat(deeplvl);
+  const keys = Object.keys(value);
+  const renderedArr = keys.reduce((acc, key) => [...acc, `${indentation}    ${key}: ${value[key]}`], []);
+  return ['{', ...renderedArr, `${indentation}}`].join('\n');
+};
 
 const renderObjLike = (ast, deeplvl = 0) => {
   const astKeys = Object.keys(ast);
@@ -6,8 +16,8 @@ const renderObjLike = (ast, deeplvl = 0) => {
   const renderIter = (key) => {
     const astNode = ast[key];
     const { difference } = astNode;
-    const nodeValue1 = renderValue(astNode.value1, 'objLike', deeplvl + 1);
-    const nodeValue2 = renderValue(astNode.value2, 'objLike', deeplvl + 1);
+    const nodeValue1 = renderValue(astNode.value1, deeplvl + 1);
+    const nodeValue2 = renderValue(astNode.value2, deeplvl + 1);
     // const keyInObj1Removed = `${indentation}  - ${key}: ${nodeValue1}`;
     // const keyInObj2Added = `${indentation}  + ${key}: ${nodeValue2}`;
     // const equalValuesCase = `${indentation}    ${key}: ${nodeValue1}`;

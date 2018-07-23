@@ -39,3 +39,9 @@ test('testing difference yml extended', () => {
   const expected6 = fs.readFileSync(getFixturePath('result6'), 'utf-8');
   expect(result6).toBe(expected6);
 });
+
+test('testing difference plain format', () => {
+  const result = gendiff(getFixturePath('before2.json'), getFixturePath('after2.json'), 'plain');
+  const expected = fs.readFileSync(getFixturePath('result7'), 'utf-8');
+  expect(result).toBe(expected);
+});

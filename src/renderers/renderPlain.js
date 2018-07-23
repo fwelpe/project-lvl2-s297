@@ -1,30 +1,32 @@
-import renderValue from './renderValue';
+import _ from 'lodash';
+
+const complexCheck = value => (_.isObject(value) ? 'complex value' : `'${value}'`);
 
 const renderPlain = (ast, parentArr = []) => {
-  const ASTkeys = Object.keys(ast);
-  const renderIter = (acc, key) => {
-    const ASTnode = ast[key];
-    const { difference } = ASTnode;
-    const fullKey = [...parentArr, key].join('.');
-    const beginning = `Property ${fullKey}`;
-    const nodeValue1 = renderValue(ASTnode.value1, 'plain');
-    const nodeValue2 = renderValue(ASTnode.value2, 'plain');
+  const astKeys = Object.keys(ast);
+  const renderIter = (key) => {
+    const astNode = ast[key];
+    const { difference } = astNode;
+    const fullKeyArr = [...parentArr, key];
+    const beginning = `Property ${fullKeyArr.join('.')}`;
+    // const nodeValue1 = renderValue(astNode.value1, 'plain');
+    // const nodeValue2 = renderValue(astNode.value2, 'plain');
     switch (difference) {
       case 'same':
-        return [...acc, `${beginning} was the same.`];
+        return `${beginning} was the same.`;
       case 'added':
-        return [...acc, `${beginning} was added with ${nodeValue2}`];
+        return `${beginning} was added with ${complexCheck(astNode.value2)}`;
       case 'removed':
-        return [...acc, `${beginning} was removed.`];
+        return `${beginning} was removed.`;
       case 'different':
-        return [...acc, `${beginning} was updated. From ${nodeValue1} to ${nodeValue2}`];
+        return `${beginning} was updated. From ${complexCheck(astNode.value1)} to ${complexCheck(astNode.value2)}`;
       case 'objects':
-        return [...acc, renderPlain(ASTnode.childrenAST, [...parentArr, key])];
+        return renderPlain(astNode.childrenAST, fullKeyArr);
       default:
         throw new Error(`unknown difference: ${difference}. internal bug`);
     }
   };
-  const renderedArr = ASTkeys.reduce(renderIter, []);
+  const renderedArr = astKeys.map(renderIter);
   return renderedArr.join('\n');
 };
 
