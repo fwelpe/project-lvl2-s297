@@ -2,16 +2,12 @@ import _ from 'lodash';
 
 const complexCheck = value => (_.isObject(value) ? 'complex value' : `'${value}'`);
 
-const renderPlain = (ast, parentArr = []) => {
-  const astKeys = Object.keys(ast);
-  const renderIter = (key) => {
-    const astNode = ast[key];
-    const { difference } = astNode;
+const prerenderArr = (ast, parentArr = []) => {
+  const renderIter = (astNode) => {
+    const { type, key } = astNode;
     const fullKeyArr = [...parentArr, key];
     const beginning = `Property ${fullKeyArr.join('.')}`;
-    // const nodeValue1 = renderValue(astNode.value1, 'plain');
-    // const nodeValue2 = renderValue(astNode.value2, 'plain');
-    switch (difference) {
+    switch (type) {
       case 'same':
         return `${beginning} was the same.`;
       case 'added':
@@ -21,13 +17,15 @@ const renderPlain = (ast, parentArr = []) => {
       case 'different':
         return `${beginning} was updated. From ${complexCheck(astNode.value1)} to ${complexCheck(astNode.value2)}`;
       case 'objects':
-        return renderPlain(astNode.children, fullKeyArr);
+        return prerenderArr(astNode.children, fullKeyArr);
       default:
-        throw new Error(`unknown difference: ${difference}. internal bug`);
+        throw new Error(`unknown type: ${type}. internal bug`);
     }
   };
-  const renderedArr = astKeys.map(renderIter);
-  return renderedArr.join('\n');
+  const renderedArr = ast.map(renderIter);
+  return renderedArr;
 };
+
+const renderPlain = ast => _.flattenDeep(prerenderArr(ast)).join('\n');
 
 export default renderPlain;
